@@ -26,9 +26,9 @@ The Audit of the election shows that:
       total_votes = total_votes + 1
   ```
 2. The candidates were:
-  - Charles Casper Stockham
-  - Diana DeGette
-  - Raymon Anthony Doane
+   - Charles Casper Stockham
+   - Diana DeGette
+   - Raymon Anthony Doane
 
     This code builds on the for loop in the step above to check each row in the canidate name column and add it to a list.
 ```
@@ -40,9 +40,9 @@ The Audit of the election shows that:
 ```
 
 3. The total number of votes per candidate were:
-  - Charles Casper Stockham recieved 85,213 votes.
-  - Diana DeGette recieved 272,892 votes.
-  - Raymond Anthony Doane recieved 11,606 votes.
+   - Charles Casper Stockham recieved 85,213 votes.
+   - Diana DeGette recieved 272,892 votes.
+   - Raymond Anthony Doane recieved 11,606 votes.
 
     This code continues to build on the for loop above, to begin tracking votes and adding them to the list of candidates, adding one vote for every row that contains the name of the candidate.
 ```
@@ -55,9 +55,9 @@ The Audit of the election shows that:
         candidate_votes[candidate_name] += 1
 ```
 4. The percentage of the votes that each candidate won:
-  - Charles Casper Stockham recieved 23.0% of the total votes.
-  - Diana DeGette recieved 73.8% of the total votes.
-  - Raymond Anthony Doane recieved 3.1% of the total votes.
+   - Charles Casper Stockham recieved 23.0% of the total votes.
+   - Diana DeGette recieved 73.8% of the total votes.
+   - Raymond Anthony Doane recieved 3.1% of the total votes.
 
     This string of code is taking the total votes for each candidate generated in the step above and dividing it by the total number of votes calculated in the first step, and multiplying by 100, yielding the percentage.
 ```
