@@ -20,9 +20,9 @@ A Colorado Board of Elections employee has given you the following tasks to comp
 The Audit of the election shows that:
 1. There were 369,711 votes cast in the election.
 
-   This was determined with the following string of code. This code uses a for loop to check every row (representing each vote) and add one vote to the total number of votes cast.
+   This was determined with the following string of code. This code uses a `for` loop to check every row (representing each vote) and add one vote to the total number of votes cast.
   ```
-    for row in reader:
+  for row in reader:
       total_votes = total_votes + 1
   ```
 2. The candidates were:
@@ -30,13 +30,13 @@ The Audit of the election shows that:
    - Diana DeGette
    - Raymon Anthony Doane
 
-    This code builds on the for loop in the step above to check each row in the canidate name column and add it to a list.
+    This code builds on the `for` loop in the step above to check each row in the canidate name column and add it to a list.
 ```
-    for row in reader:
-        total_votes = total_votes + 1
-        candidate_name = row[2]
-        if candidate_name not in candidate_options:
-            candidate_options.append(candidate_name)
+   for row in reader:
+      total_votes = total_votes + 1
+      candidate_name = row[2]
+      if candidate_name not in candidate_options:
+         candidate_options.append(candidate_name)
 ```
 
 3. The total number of votes per candidate were:
@@ -44,40 +44,77 @@ The Audit of the election shows that:
    - Diana DeGette recieved 272,892 votes.
    - Raymond Anthony Doane recieved 11,606 votes.
 
-    This code continues to build on the for loop above, to begin tracking votes and adding them to the list of candidates, adding one vote for every row that contains the name of the candidate.
+    This code continues to build on the `for` loop above, to begin tracking votes and adding them to the list of candidates, adding one vote for every row that contains the name of the candidate.
 ```
-    for row in reader:
-        total_votes = total_votes + 1
-        candidate_name = row[2]
-        if candidate_name not in candidate_options:
-            candidate_options.append(candidate_name)
-            candidate_votes[candidate_name] = 0
-        candidate_votes[candidate_name] += 1
+   for row in reader:
+      total_votes = total_votes + 1
+      candidate_name = row[2]
+      if candidate_name not in candidate_options:
+         candidate_options.append(candidate_name)
+         candidate_votes[candidate_name] = 0
+      candidate_votes[candidate_name] += 1
 ```
 4. The percentage of the votes that each candidate won:
    - Charles Casper Stockham recieved 23.0% of the total votes.
    - Diana DeGette recieved 73.8% of the total votes.
    - Raymond Anthony Doane recieved 3.1% of the total votes.
 
-    This string of code is taking the total votes for each candidate generated in the step above and dividing it by the total number of votes calculated in the first step, and multiplying by 100, yielding the percentage.
+    This string of code is using a `for` loop to take the total votes for each candidate generated in the step above and dividing it by the total number of votes calculated in the first step, and multiplying by 100, yielding the percentage.
 ```
-     for candidate_name in candidate_votes:
-        votes = candidate_votes.get(candidate_name)
-        vote_percentage = float(votes) / float(total_votes) * 100
+   for candidate_name in candidate_votes:
+      votes = candidate_votes.get(candidate_name)
+      vote_percentage = float(votes) / float(total_votes) * 100
 ```
+5. The winner of the election was:
+   - Diana DeGette, who recived 73.8% of the vote and 272.892 votes.
 
+    This code uses an `if` statement determing if the the votes the candidate recieved is greater than the minimum winning count of votes, and the votes recieved percentage is larger than the minimum winning percentage of votes, then to record the winning candidates name, the number of votes recieved and the percentage of votes recieved.
+```
+   if (votes > winning_count) and (vote_percentage > winning_percentage):
+      winning_count = votes
+      winning_candidate = candidate_name
+      winning_percentage = vote_percentage
+```
+6. The percentage of the total votes that each county represents:
+   - Jefferson County with 10.5% of the total votes, with 38,855 votes cast.
+   - Denver County with 82.8% of the total votes, with 306,055 votes cast.
+   - Arapahoe County with 6.7% of the total votes, with 24,801 votes cast.
 
-
-
-
-- The winner of the election was
-  - Diana DeGette, who recived 73.8% of the vote and 272.892 votes.
-- The percentage of the total votes that each county represents:
-  - Jefferson County with 10.5% of the total votes, with 38,855 votes cast.
-  - Denver County with 82.8% of the total votes, with 306,055 votes cast.
-  - Arapahoe County with 6.7% of the total votes, with 24,801 votes cast.
-- The largest county was Denver County, with 306,055 votes, or 82.8% of the total voters.
-
-## Challenge Overview
-
-## Challenge Summary
+    This code uses a `for` loop to look through each county and record how many votes were cast in that county, as well as calculating and recording the percentage of the total vote that has been counted in each county.
+```
+   for county_name in county_list:
+      votes = county_votes.get(county_name)
+      vote_percentage= float(votes)/float(total_votes)*100
+      county_results = (f"{county_name}: {vote_percentage:.1f}% ({votes:,})\n")
+```
+7. The largest county was:
+    - Denver County, with 306,055 votes, or 82.8% of the total voters.
+    
+     This code builds on the `for` loop in the sequence above, and uses an `if` statement to determine which county has the highest number of votes cast.
+```
+   for county_name in county_list:
+      votes = county_votes.get(county_name)
+      vote_percentage= float(votes)/float(total_votes)*100
+      county_results = (f"{county_name}: {vote_percentage:.1f}% ({votes:,})\n")   
+         if (votes > largest_turnout):
+            largest_turnout = votes
+            largest_county = county_name
+```
+## Election Audit Summary
+This prorgam can be expanded to examine any volume of votes cast, and number of counties polled and any number of candidates participating.
+- This program is already set up to examine any number of votes, using this section of code. This uses a `for` loop to examine every row (each row representing a single vote), and count it. 
+```
+   for row in reader:
+      total_votes = total_votes + 1
+```
+- This program is set up to record any number of counties that are participating in the election. This section of code builds on the `for` loop in the statement above, using an `if` statment. This `if` statement is telling the program to check every row, and determine the county name. If the county name isn't in a list of counties, to add it to the list. This will yield a list of all of the counties polled.
+```
+   if county_name not in county_list:
+      county_list.append(county_name)
+```
+- This program is also set up to record all of the candidates that recieved votes in the election.
+```
+   if candidate_name not in candidate_options:
+      candidate_options.append(candidate_name)
+      candidate_votes[candidate_name] = 0
+   candidate_votes[candidate_name] += 1
