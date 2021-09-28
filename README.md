@@ -1,7 +1,7 @@
 # Election_Analysis
 Module 3 PyPoll with Python
 
-## Project overview
+## Overview of the Election Audit
 A Colorado Board of Elections employee has given you the following tasks to complete the election audit of a recent local congressional election.
 
 1. Calculate the total number of votes cast.
@@ -9,13 +9,15 @@ A Colorado Board of Elections employee has given you the following tasks to comp
 3. Calculate the total number of votes each candidate received.
 4. Calculate the percentage of votes each candidate won.
 5. Determine the winner of the election based on popular vote.
+6. Determine the percentage of the total votes that each county represents.
+7. Determine the largest county by voter turnout.
 
 ## Resources
 - Data Source: election_results.csv
 - Software: Python 3.6.1, Visual Studio Code, 1.38.1
 
-## Summary 
-The analysis of the election show that:
+## Election Audit Results
+The Audit of the election shows that:
 - There were 369,711 votes cast in the election.
 - The candidates were:
   - Charles Casper Stockham
