@@ -112,9 +112,50 @@ This prorgam can be expanded to examine any volume of votes cast, and number of 
    if county_name not in county_list:
       county_list.append(county_name)
 ```
+With some modification this can be changed to states that participated, as opposed to counties that participated if this is a nation wide election. By modifying the code to represent states and to pull the data from the correct location in the data that has been supplied. The code will function the same way, recording the largest voter turn out, gathering all of the state names, the votes cast in each state, and the percentage of the total votes that each state represents.
+```
+state_list = []
+state_votes = {}
+largest_state_turnout = ""
+largest_vote_count = 0
+state_name = row[x] (where x is the correct column in the data, states)
+   if state_name not in state_list:
+      state_list.append(state_name)
+      state_votes[state_name] = 0
+   state_votes[state_name] += 1
+for state_name in state_list:
+   votes = state_votes.get(state_name)
+   vote_percentage= float(votes)/float(total_votes)*100
+   state_results = (f"{state_name}: {vote_percentage:.1f}% ({votes:,})\n")
+   if (votes > largest_state_turnout):
+      largest_state_turnout = votes
+      largest_vote_count = state_name
+```
 - This program is also set up to record all of the candidates that recieved votes in the election.
 ```
    if candidate_name not in candidate_options:
       candidate_options.append(candidate_name)
       candidate_votes[candidate_name] = 0
    candidate_votes[candidate_name] += 1
+```
+With some modifications this program can be adjusted to recored the names of the different parties that recieved votes in this election.
+```
+party_options = []
+party_votes = {}
+winning_party = ""
+winning_count = 0
+winning_percentage = 0
+party_name = row[x] (where x represents the correct column in the data that holds party affiliation)
+if party_name not in party_options:
+   party_options.append(party_name)
+   party_votes[party_name] = 0
+party_votes[party_name] += 1
+for party_name in party_votes:
+   votes = party_votes.get(party_name)
+   vote_percentage = float(votes) / float(total_votes) * 100
+   party_results = (f"{party_name}: {vote_percentage:.1f}% ({votes:,})\n")
+   if (votes > winning_count) and (vote_percentage > winning_percentage):
+      winning_count = votes
+      winning_party = party_name
+      winning_percentage = vote_percentage
+```
